@@ -23,7 +23,6 @@ var allSliders = [];
 var octaveSlider, attackSlider, decaySlider, sustainSlider, releaseSlider;
 
 // Confirm changes
-var changeADSRButton;
 var waveSelect;
 
 // Input boxes for attack and release level
@@ -33,7 +32,7 @@ var inputAttackLevel, inputReleaseLevel;
 var img;
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(1000, 800);
   smooth();
   
   notesToCoordinates = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"]
@@ -65,29 +64,25 @@ function setup() {
   wave.start();
   wave.amp(env);
   
-  octaveSlider = new SliderClass(50, 670, 400, 0, 8, 1, false, true, false, "Octave", 4);
+  octaveSlider = new SliderClass(50, 470, 400, 0, 8, 1, false, true, false, "Octave", 4);
   allSliders.push(octaveSlider);
   
-  attackSlider = new SliderClass(50, 770, 400, 0, 2, 0.01, true, false, false, "Attack", 0.05);
+  attackSlider = new SliderClass(50, 570, 400, 0, 2, 0.01, true, false, false, "Attack", 0.05);
   allSliders.push(attackSlider);
   
-  decaySlider = new SliderClass(50, 870, 400, 0, 2, 0.01, true, false, false, "Decay", 0.1);
+  decaySlider = new SliderClass(50, 670, 400, 0, 2, 0.01, true, false, false, "Decay", 0.1);
   allSliders.push(decaySlider);
   
-  sustainSlider = new SliderClass(530, 670, 400, 0, 2, 0.01, true, false, false, "Sustain", 0.5);
+  sustainSlider = new SliderClass(530, 470, 400, 0, 2, 0.01, true, false, false, "Sustain", 0.5);
   allSliders.push(sustainSlider);
   
-  releaseSlider = new SliderClass(530, 770, 400, 0, 2, 0.01, true, false, false, "Release", 1);
+  releaseSlider = new SliderClass(530, 570, 400, 0, 2, 0.01, true, false, false, "Release", 1);
   allSliders.push(releaseSlider);
   
-  changeADSRButton = createButton("Change ADSR");
-  changeADSRButton.position(530, 820);
-  changeADSRButton.mousePressed(changeADSR);
-  
   var changeWaveType = createElement('h4', 'Wave Type');
-  changeWaveType.position(683, 775);
+  changeWaveType.position(683, 575);
   waveSelect = createSelect();
-  waveSelect.position(680, 820);
+  waveSelect.position(680, 620);
   waveSelect.option('Sine');
   waveSelect.option('Square');
   waveSelect.option('Sawtooth');
@@ -95,21 +90,21 @@ function setup() {
   waveSelect.changed(changeWave);
   
   var changeWaveType = createElement('h4', 'Attack Level');
-  changeWaveType.position(535, 825);
+  changeWaveType.position(535, 625);
   inputAttackLevel = createInput();
-  inputAttackLevel.position(555, 870);
+  inputAttackLevel.position(555, 670);
   inputAttackLevel.input(inputNewLevels);
   inputAttackLevel.size(50, 20);
   
   var changeWaveType = createElement('h4', 'Release Level');
-  changeWaveType.position(675, 825);
+  changeWaveType.position(675, 625);
   inputReleaseLevel = createInput();
-  inputReleaseLevel.position(695, 870);
+  inputReleaseLevel.position(695, 670);
   inputReleaseLevel.input(inputNewLevels);
   inputReleaseLevel.size(50, 20);
   
   var changeWaveType = createElement('p', '');
-  changeWaveType.position(745, 845);
+  changeWaveType.position(745, 645);
   
   img = loadImage("keyboard.png");
   
@@ -128,13 +123,13 @@ function draw(){
      }
   }
   
-  line(0, 600, width, 600);
+  line(0, 400, width, 400);
   for(var j = 0; j < allSliders.length; j++){
     allSliders[j].move();
     allSliders[j].display();
   }
   
-  image(img, 760, 890, img.width/1.5, img.height/1.5);
+  image(img, 760, 690, img.width/1.5, img.height/1.5);
 }
 
 function changeWave() {
@@ -181,6 +176,7 @@ function mouseReleased() {
   if(octaveSlider.sliderValue % 1 === 0){
     changeOctave();
   }
+  changeADSR();
 }
 
 function changeOctave(){
@@ -252,7 +248,7 @@ function DisplayNote (letter, upper) {
   
   this.fall = function() {
     this.ypos = this.ypos + this.yspeed;
-    if(this.ypos > 600){
+    if(this.ypos > 400){
       this.offscreen = true; 
       this.noteColor = color(0,0,0,0);
     }

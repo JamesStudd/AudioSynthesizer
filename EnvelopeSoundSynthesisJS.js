@@ -235,7 +235,6 @@ function DisplayNote (letter, upper) {
   this.xpos = (notesToCoordinates.indexOf(this.noteLetter) * (width / notesToCoordinates.length));
   if(this.upper){
     this.xpos = ((notesToCoordinates.length - 1) * (width / notesToCoordinates.length)); 
-    console.log(this.xpos);
   }
   this.ypos = 0;
   this.yspeed = 2;

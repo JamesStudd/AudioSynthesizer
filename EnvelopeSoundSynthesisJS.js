@@ -30,10 +30,12 @@ var inputAttackLevel, inputReleaseLevel;
 
 // Help Image
 var img;
+var playing; // Autoplay Policy Change
 
 function setup() {
   createCanvas(1000, 800);
   smooth();
+  playing = false;
   
   notesToCoordinates = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"]
   keysToNotes = ["Z", "S", "X", "D", "C", "V", "G", "B", "H", "N", "J", "M", "¼"]
@@ -196,6 +198,14 @@ function changeOctave(){
 }
 
 function playNote(tempFreq, letter, upper){
+  if(!playing){
+    var x = getAudioContext();
+	x.resume().then(() => {
+	  console.log("audio playing");
+	  playing = true;
+	});
+  }
+	
   wave.freq(tempFreq);
   env.play();
   var newLetter;

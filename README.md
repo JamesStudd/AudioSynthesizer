@@ -7,6 +7,6 @@ Think again buddy, all of them are configurable.
 "Well fine but I'm only stuck with 1 wave type"  
 That's where you're wrong hot stuff, enjoy up to FOUR wave types.
 
-http://www.jamesstudd.com/AudioSynthesizer/
+https://jamesstudd.github.io/AudioSynthesizer/
 
 The only audio synthesizer you'll ever need.
